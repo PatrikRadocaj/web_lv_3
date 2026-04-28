@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerija filmskih slika s lightbox prikazom bez JavaScript-a.">
+    <link rel="stylesheet" href="/style/style.css">
+    <title>Galerija slika</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Galerija filmskih slika</h1>
+        <div class="nav-wrapper">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            <label for="menu-toggle" class="hamburger" aria-label="Otvori navigaciju">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav aria-labelledby="primarna-navigacija" class="glavna-navigacija">
+                <h2 id="primarna-navigacija">Primarna navigacija</h2>
+                <ul>
+                    <li><a href="/">Početna</a></li>
+                    <li><a href="/grafikon.html">Grafikon</a></li>
+                    <li><a href="/slike">Galerija</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="uvod">
+            <h2>O galeriji</h2>
+            <p>
+                Ova galerija prikazuje slike povezane s filmskom tematikom. Klikom na sliku
+                otvara se njezin veći prikaz, a zatim se može zatvoriti bez korištenja JavaScript-a.
+            </p>
+        </section>
+
+        <section class="galerija">
+            <h2>Galerija slika</h2>
+
+            <% images.forEach((image, index) => { %>
+                <figure class="galerija_slika">
+                    <a href="#slika<%= index + 1 %>">
+                        <img src="<%= image.url %>" alt="<%= image.title %>" loading="lazy">
+                    </a>
+                    <figcaption><%= image.title %></figcaption>
+                </figure>
+            <% }); %>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <% images.forEach((image, index) => { %>
+            <div id="slika<%= index + 1 %>" class="lightbox">
+                <a href="#" class="zatvori">×</a>
+                <img src="<%= image.url %>" alt="<%= image.title %>">
+            </div>
+        <% }); %>
+    </main>
+
+    <footer>
+        <p>&copy; 2026. Patrik.</p>
+    </footer>
+
+</body>
+
+</html>

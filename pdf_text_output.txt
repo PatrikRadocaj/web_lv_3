@@ -1,0 +1,1063 @@
+--- PAGE 1 ---
+LV3 - JavaScript
+Web programiranje
+2025./2026.
+1 Cilj laboratorijske vježbe
+Cilj ove laboratorijske vježbe je upoznati se s osnovama razvoja web aplikacija koje
+se poslužuju sa strane poslužitelja (engl.server-side) korištenjem okruženjaNode.js
+i okviraExpress. Za razliku od prethodnih vježbi, gdje su se HTML i CSS datoteke
+otvarale lokalno izravno u pregledniku, u ovoj vježbi web stranica se pokre ´ce pomo ´cu
+poslužiteljske aplikacije koja služi kao "server" i klijentu dostavlja potrebne resurse.
+Važno je naglasiti da se u ovoj vježbi sva poslovna logika, uklju ˇcuju´ci dohva ´canje,
+prikaz i manipulaciju podacima, odvija isklju ˇcivo na strani preglednika korištenjem
+JavaScripta. Drugim rije ˇcima,JavaScript se koristi samo na klijentskoj strani, dok
+seNode.js i Express koriste samo za posluživanje stati ˇckog sadržaja (HTML,
+CSS, slike, JavaScript) te eventualno podataka u obliku.jsonili.csv.
+Dodjeljene su dvije vrste ulaznih podataka: tablica podataka o glazbi i tablica po-
+dataka o filmovima. Ovisno o vrsti podatkovne datoteke, izra ¯duju se funkcionalnosti
+kao što su:
+• dinami ˇckog prikaza i skrivanja dijelova sadržaja;
+• filtriranja i pretraživanja podataka na strani preglednika, prema odabranim kriter-
+ijima (npr. žanr, vrsta glazbe, godina)
+• sortiranje podataka prema odre ¯denim stupcima;
+• reagiranja na korisni ˇcke akcije (klikovi, unos podataka);
+• dinami ˇcki prikaz dodatnih informacija o pojedinom retku;
+Dodatno je objašnjeno za svaki zadatak posebno što i kako je potrebno prikazati
+rješenje.
+Zadaci za laboratorijsku vježbu:
+1. zad: Dohvat i prikaz podataka 3.1
+2. zad: Filtriranje i prikazivanje 3.2
+3. zad: Interaktivno upravljanje sadržajem 3.4
+4. Zad: Dodatno 3.5
+--- PAGE 2 ---
+Cilj je da se svi ovi elementi izvedu korištenjem JavaScripta u pregledniku, bez
+potrebe za serverskom obradom podataka. Podatke je potrebno dohvatiti pomo ´cu
+JavaScript funkcija (npr.fetch) te ih ugraditi u DOM pomo ´cu manipulacije elementima
+stranice.
+Završnu verziju stranice potrebno je postaviti na odgovaraju ´ci servis (npr. Railway,
+Render, Cyclic) te poveznicu navesti uREADME.mddokument unutar pripadaju ´ceg
+GitHubrepozitorija. U repozitoriju tako ¯der trebaju biti komentirani dijelovi koda i svi
+dodatni resursi koji su korišteni pri izradi rješenja.
+U izradi web aplikacije koristiti jednu od sljede ´cih baza podataka za prikaz po-
+dataka, ovisno o tome koju ste koristili pri izradi rješenja zadataka na prvim laboratori-
+jskim vježbama:
+• Podaci o glazbi
+• Podaci o filmovima.
+Integracija rješenja na postoje ´cu web stranicu
+Sva rješenja zadataka (1., 2. i 3. zadatak) potrebno je integrirati na ve ´c kreiranu
+poˇcetnu (index.html) stranicu iz prethodnih laboratorijskih vježbi ili dodati novu html
+stranicu, ali povezati ju s ve ´c postoje ´com web stranici.
+Mogu ´ce na ve ´c postoje ´coj index.html stranici implementirti funkcionalnosti koje
+moraju biti vidljive i dostupne korisniku unutar iste web stranice, ispod postoje ´ceg
+sadržaja (npr. ispod tablice prikazane u prvom zadatku).
+Napomena:Nije dozvoljeno kreirati novu zasebnu stranicu za ove zadatke. Svi
+elementi (prikaz podataka, filtriranje, interaktivno upravljanje sadržajem) trebaju biti
+dio postoje ´ce stranice, ˇcime se osigurava kontinuitet u razvoju aplikacije.
+Po završetku, potrebno je ažurirati projekt na odabranom hosting servisu (npr. Rail-
+way) kako bi sve funkcionalnosti bile dostupne nakon osvježavanja stranice i postaviti
+sve dokumente na github - LV3, dostupan link dan na Merlinu.
+2 Uvod u JavaScript
+JavaScript je dinami ˇcan skriptni programski jezik visoke razine. JavaScript (JS) je in-
+terpretativnog tipa što zna ˇci da se JS kod direktno izvršava (JIT - Just in time) bez
+pretvorbe u strojni jezik (binarni). JS omogu ´cuje interpretaciju klijentske strane logike
+unutar samog web preglednika. Prvobitno kreiran za web preglednike, JS se unutar
+zadnjih par godina popularizacijom okvira Node.js koristi i na serverskoj strani (back-
+end), kao i u izradi desktop/mobilnih aplikacija (Electron, Phaser.js).
+Osim što je definiran objektno orijentiranom paradigmom, JavaScript podržava i
+funkcionalno programiranje. U JavaScriptu sve je predstavljeno kao objekt. Nema
+razlike izme ¯du vrsta objekata. Ono što razlikuje JavaScript od drugih objektno orijenti-
+ranih jezika (npr. Java) je to što naslje ¯divanje funkcionira putem mehanizma prototipa,
+a svojstva i metode mogu se dinami ˇcki dodati bilo kojem objektu, dok u Javi objekti
+su podijeljeni u klase i instance, a naslje ¯divanje se provodi putem hijerarhije klasa.
+Klase i instance ne mogu dinami ˇcki dodavati svojstva ili metode. Kako se JavaScript
+nalazi unutar web preglednika i na klijentskoj strani - nije mogu ´ce vršiti I/O radnje s
+klijentovog diska.
+2
+--- PAGE 3 ---
+2.1 ECMAScript 2024 (ES15) – standard JavaScripta
+JavaScript je standardiziran prema organizacijiEcma International, globalnom ti-
+jelu za standardizaciju informacijskih i komunikacijskih sustava (ECMA je izvorno bila
+skra´cenica za Europsko udruženje proizvo ¯daˇca ra ˇcunala). Cilj standardizacije je razvoj
+i održavanje me ¯dunarodnog programskog jezika temeljenog na JavaScriptu, kako bi
+programski kod bio dosljedan i interoperabilan u svim okruženjima koja podržavaju taj
+standard.
+Standardizirana verzija JavaScripta naziva seECMAScripti definira pravila, sin-
+taksu i funkcionalnosti jezika. Svi suvremeni web preglednici i JavaScript okruženja
+implementiraju ECMAScript standard, što osigurava konzistentno ponašanje koda bez
+obzira na platformu.
+ECMAScript standard se kontinuirano razvija i svake godine izlazi nova verzija s
+dodatnim mogu ´cnostima i poboljšanjima. Trenuta ˇcna, 15. verzija,ECMAScript 2024
+(ES15), objavljena je u lipnju 2024. godine i donosi brojne nove zna ˇcajke, uklju ˇcu-
+ju´ci metode za grupiranje podataka (Object.groupBy,Map.groupBy), poboljšanja
+rada s Promise objektima (Promise.withResolvers), naprednije operacije nad
+skupovima (nove metode zaSet), te novu/vzastavicu za regularne izraze.
+Prijašnje verzije, poputECMAScript 2015 (ES6), bile su prekretnica u razvoju
+jezika jer su uvele moderne koncepte poput klasa, modula,leticonstdeklaracija,
+"arrow" funkcija, Promise objekata i mnogih drugih mogu ´cnosti koje su omogu ´cile
+razvoj velikih i složenih aplikacija.
+Danas ve ´cina preglednika i JavaScript okruženja brzo implementira nove zna ˇca-
+jke iz najnovijih ECMAScript standarda, ˇcime se osigurava brza dostupnost novih
+funkcionalnosti širokoj zajednici programera.
+Više na:
+• ESMAScript W3Schools
+• JavaScript Guide
+• New features in es15
+• Before and After ES15: examples
+3 Zadatak laboratorijske vježbe
+U sklopu ove laboratorijske vježbe potrebno je izraditi web aplikaciju koja koristi JavaScript
+na klijentskoj strani za dohva ´canje i prikaz podataka o filmovima ili glazbi. Podaci se
+dohva ´caju iz lokalne.jsondatoteke korištenjem funkcijefetch, a sadržaj se di-
+nami ˇcki generira u pregledniku. Stranica se pokre ´ce putem Express poslužitelja, no
+sva poslovna logika ostaje na klijentskoj strani.
+Odra ¯duje se tri zadatka, ovisno o vrsti dodijeljenih podataka (filmovi ili glazba). U
+nastavku su opisani zadaci koje treba implementirati.
+Kratki opis strukture projekta:
+•public/– sadrži sve stati ˇcke datoteke koje se u ˇcitavaju na klijentskoj strani
+(HTML, CSS, JS, podatci).
+•index.html– glavna stranica koja se prikazuje korisniku.
+3
+--- PAGE 4 ---
+my-project/
+public/
+index.html
+style.css
+script.js
+filmovi.json
+filmovi.csv
+glazba.json
+glazba.csv
+server.js
+package.json
+Slika 1: Struktura projekta bez korištenja EJS-a
+•script.js– klijentski JavaScript koji dohva ´ca i prikazuje podatke.
+•filmovi.csv filmovi.json glazba.csv, glazba.json– lokalna da-
+toteka s podacima o filmovima, glazbi.
+•server.js– jednostavan Express poslužitelj koji omogu ´cuje dohvat datoteka
+iz mapepublic.
+•package.json– definira ovisnosti projekta i osnovne informacije.
+3.1 Zadatak 1. Dohvat i prikaz podataka
+Pomo ´cu JavaScripta s klijentske strane potrebno je dohvatiti sadržaj datotekemovies.csv
+iliglazba.csvi prikazati ga u pregledniku. Sadržaj treba prikazati u tabli ˇcnom obliku,
+a svaki redak mora sadržavati relevantne informacije:
+1. naslov filma, žanr, godina, trajanje, ocjena;
+2. naziv benda, naziv pjesme, godina izdavanja, tempo, raspoloženje
+Stranica se treba automatski popuniti podacima pri u ˇcitavanju, bez potrebe za os-
+vježavanjem ili dodatnim unosom.
+Primjer 3.1.Primjer sadržaja filmovi.csv
+title,year,genres,duration,rating,directors
+Inception,2010,"Action;Sci-Fi",148,8.8,"Christopher Nolan"
+The Matrix,1999,"Action;Sci-Fi",136,8.7,"Lana Wachowski;Lilly
+Wachowski"
+U nastavku predloška dani su primjeri koda za kreiranje pojedinih dijelova zadatka,
+a rješenja se prikazuju na primjeru dokumenta s filmskim podacima. Prilikom izrade
+zadatka potrebno je prilagoditi kod prema strukturi podataka koje koristite. Tako ¯der,
+vodite ra ˇcuna o vizualnom izgledu stranice te uklju ˇcite odgovaraju ´cu.cssdatoteku za
+stilizaciju tablice.
+4
+--- PAGE 5 ---
+3.1.1 Parsiranje CSV datoteke
+Prvo je potrebno parsirati dokument s podacima, što je mogu ´ce uˇciniti na dva na ˇcina.
+Jedan pristup je parsiranje izravno unutar datotekescripts.js, no taj pristup nije
+optimalan jer se kod za parsiranje izvršava prilikom svakog pokretanja skripte.
+Koristi se biblioteka PapaParse da bi "pro ˇcitao" CSV datoteku i pretvorio je u struk-
+turirani objekt – niz redaka gdje svaki redak postaje objekt. To se naziva parsiranje.
+Dobiveni rezultat spremamo u varijablurezultat. KakoPapa.parse(...)vra ´ca
+objekt koji sadrži poljedata– niz objekata gdje svaki objekt predstavlja jedan redak
+iz CSV datoteke. Odnosno predstavlja niz (array) objekata, a Svaki objekt u tom nizu
+odgovara jednom retku iz CSV dokumenta, odnosno jednom filmu.
+Taj dio koda izgleda ovako:
+fetch(’filmtv_movies.csv’)
+.then(res => res.text())
+.then(csv => {
+constrezultat = Papa.parse(csv, {
+header: true,
+skipEmptyLines: true
+});
+Uklju ˇcivanje vanjske biblioteke za parsiranje CSV datoteka u HTML dokumentu
+Za potrebe parsiranja CSV datoteka u JavaScriptu, koristi se vanjska bibliotekaPapa-
+Parse. Ova biblioteka omogu ´cuje jednostavno i u ˇcinkovito u ˇcitavanje te obradu CSV
+podataka na klijentskoj strani bez potrebe za dodatnim pozadinskim (backend) rješen-
+jima.
+Kako bi omogu ´cili korištenje ove biblioteke u projektu, potrebno ju jeuklju ˇciti un-
+utar HTML dokumentapomo ´cu<script>taga. Preporuka je uklju ˇcivanje vanjskih
+biblioteka u<head>dijelu HTML dokumenta kako bi bile dostupne prije izvršavanja
+JavaScript koda aplikacije (npr.scripts.js).
+Primjer uklju ˇcivanja PapaParse biblioteke:
+Primjer 1: Uklju ˇcivanje PapaParse biblioteke
+<head>
+...
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse
+/5.4.1/papaparse.min.js"></script>
+</head>
+Važno!Potrebno je osigurati da se ova biblioteka u ˇcita prije skripte (npr.scripts.js)
+koja koristi funkcijuPapa.parse(). Zbog toga se<script>tag za PapaParse
+stavlja iznad skripti ili unutar<head>sekcije, dok se skripte naj ˇceš´ce pozicioniraju
+na kraju<body>dijela dokumenta.
+Primjer 2: Struktura HTML dokumenta s ispravnim redoslijedom u ˇcitavanja
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Virtualna Videoteka</title>
+5
+--- PAGE 6 ---
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse
+/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<!-- Sadrzaj stranice -->
+<!--skripta -->
+<script src="scripts.js"></script>
+</body>
+</html>
+Na ovaj na ˇcin se osigurava da ´ce funkcionalnosti za parsiranje CSV datoteka biti
+dostupne u trenutku kada ih vaš kod zatreba.
+3.1.2 Obrada i priprema podataka za prikaz
+Nakon parsiranja sirovih podataka iz CSV-a pomo ´cu bibliotekePapaParse, potrebno
+je dodatno obraditi svaki redak kako bi podaci bili u pravilnom i korisnom formatu
+za prikaz i daljnju obradu. Me ¯dutim, sve vrijednosti kojePapa.parse(...)vra ´ca
+kao objekt koji sadrži poljedata, u tom trenutku još uvijek su stringovi, uklju ˇcuju´ci i
+numeri ˇcke vrijednosti poput godine, trajanja ili broja glasova.
+Primjer 3: Primjer dohva ´canja podataka iz CSV-a
+constrezultat = Papa.parse(csv, { header: true,
+skipEmptyLines: true });
+Kako bi se pripremili strukturirani objekti s pravilnim tipovima podataka, odnoson
+za obradu svakog pojedina ˇcnog filma koristi se metoda.map(). Ova metoda pro-
+lazi kroz svaki element nizarezultat.datate omogu ´cuje kreiranje novog niza s
+transformiranim podacima. U ovom slu ˇcaju, unutarmap()funkcije koristi se lokalna
+varijablafilm, koja pri svakom prolasku predstavlja trenutni objekt (film) iz niza.
+constfilmovi = rezultat.data.map(film => ({
+title: film.title,
+year: Number(film.year),
+genre: film.genre,
+duration: Number(film.duration),
+country: film.country?.split(’,’).map(c => c.trim()) ||
+[],
+total_votes: Number(film.total_votes)
+}));
+U ovoj obradi:
+•year,durationitotal_votespretvaraju se iz stringova u numeri ˇcke tipove
+pomo ´cu funkcijeNumber().
+•countryse razdvaja u niz država ako ih ima više (odvojenih zarezom), uz uk-
+lanjanje viška razmaka.
+Na ovaj na ˇcin dobiva se novi niz objekata pod nazivomfilmovi, koji je spre-
+man za prikaz u tablici, filtriranje, sortiranje i druge funkcionalnosti korisni ˇckog su ˇcelja.
+6
+--- PAGE 7 ---
+Odnosno, novi niz objekata pod nazivomfilmovisadrži strukturirane i pravilno for-
+matirane podatke spremne za prikaz korisniku ili daljnju obradu.
+Ukratko:
+•rezultat.dataje niz objekata gdje svaki objekt predstavlja jedan film.
+• Metodamap()prolazi kroz svaki od tih objekata.
+• Varijablafilmje parametar anonimne funkcije unutarmap()metode i odnosi
+se na trenutno obra ¯divani film.
+• Tijekom obrade:
+–Numeri ˇcke vrijednosti poput godine (year), trajanja (duration) i broja
+glasova (total_votes) pretvaraju se iz stringova u broj ˇcane tipove po-
+mo´cu funkcijeNumber().
+–Poljecountryse, ako sadrži više država, dijeli u niz pomo ´cu funkcije
+split(’,’)te se uklanjaju suvišni razmaci s metodomtrim().
+Na taj na ˇcin kreira se novi niz pod nazivomfilmovi,
+U nastavku slijedi prikaz na ˇcina kako se obra ¯deni podaci prikazuju u HTML tablici
+pomo ´cu JavaScript-a.
+7
+--- PAGE 8 ---
+Rad s CSV i JSON datotekama u web aplikacijama
+U ovoj vježbi koristimo podatke pohranjene u obliku CSV ili JSON datoteka. Važno je
+razumjeti razliku izme ¯du ova dva formata te mogu ´cnosti i ograni ˇcenja prilikom njihove
+uporabe na klijentskoj strani (u pregledniku).
+3.1.3 U ˇcitavanje i manipulacija podacima
+•CSV (Comma-Separated Values)je tekstualni format u kojem su podaci za-
+pisani kao nizovi stringova odvojeni zarezima. Za obradu CSV datoteka u JavaScript-
+u koristi se bibliotekaPapaParse, kojom je mogu ´ce parsirati podatke u strukturi-
+rani oblik (niz objekata).
+•JSON (JavaScript Object Notation)je format koji prirodno odgovara JavaScript
+jeziku. Podaci su odmah dostupni kao objekti i nizovi s ispravnim tipovima po-
+dataka (brojevi, stringovi, nizovi itd.).
+3.1.4 Dodavanje novih elemenata
+Bez obzira koristi li se CSV ili JSON, na klijentskoj strani mogu ´ce je dodavati nove
+elemente u podatkesamo privremeno— dok je aplikacija aktivna u pregledniku.
+Nakon osvježavanja stranice, podaci se ponovno u ˇcitavaju iz izvorne datoteke.
+Primjer:Dodavanje novog filma u niz podataka u ˇcitanih iz CSV-a ili JSON-a:
+podaci.push({
+title: "Novi Film",
+year: 2024,
+genre: "Drama",
+duration: 110,
+country: "Italy",
+total_votes: 0
+});
+Ova promjena vrijedi samo dok je stranica otvorena.
+3.1.5 Trajno spremanje podataka
+Za trajno spremanje izmjena (dodavanje, brisanje, ure ¯divanje podataka) potrebno je
+koristiti serversku logiku (npr.Node.js) ili bazu podataka. U ovoj vježbi radimo
+isklju ˇcivo na klijentskoj strani, stoga trajne izmjene izvornih datoteka nisu mogu ´ce.
+Kod CSV datoteka mogu ´ce je generirati novu verziju datoteke korištenjemPapa.unparse()
+te ponuditi korisniku preuzimanje (download) nove datoteke.
+Primjeri dohva ´canja podataka
+Primjer 4: Podaci iz .csv dokumenta
+fetch(’filmovi.csv’)
+.then(res => res.text())
+8
+--- PAGE 9 ---
+.then(csv => {
+constrezultat = Papa.parse(csv, {
+header: true,
+skipEmptyLines: true
+});
+console.log(rezultat.data);
+});
+Primjer 5: Podaci iz .json dokumenta"
+fetch(’filmovi.json’)
+.then(res => res.json())
+.then(data => {
+console.log(data);
+});
+3.1.6 Korištenje LocalStorage za privremeno spremanje
+Dohva ´canje JSON datoteke:Ako želite simulirati trajno spremanje podataka na kli-
+jentskoj strani, mogu ´ce je koristitiLocalStorage. Ovo omogu ´cuje da podaci ostanu
+pohranjeni i nakon što korisnik zatvori ili osvježi stranicu.
+// Spremanje
+localStorage.setItem(’plan’, JSON.stringify(podaci));
+// Dohvacanje
+constplan = JSON.parse(localStorage.getItem(’plan’));
+Napomena:LocalStorage je ograni ˇcen na otprilike 5MB prostora i nije pogodan za
+velike koli ˇcine podataka.
+3.1.7 Usporedba CSV i JSON formata
+Primjer spremanja i dohva ´canja:
+Znaˇcajka CSV JSON
+Dodavanje podataka Privremeno Privremeno
+Trajno spremanje Nije mogu ´ce bez servera Nije mogu ´ce bez servera
+Generiranje nove datoteke Jednostavno (Papa.unparse) Složenije
+Brzina u ˇcitavanja Sporije (parsiranje) Brže
+Struktura podataka Sve su stringovi Podržava tipove podataka
+9
+--- PAGE 10 ---
+3.1.8 Rad s ve ´cim skupovima podataka
+Kod ve ´cih datoteka (stotine ili tisu ´ce redaka) preporu ˇcuje se korištenje JSON formata
+radi bolje optimizacije i bržeg u ˇcitavanja. Tako ¯der, poželjno je implementirati tehnike
+poput:
+• Paginacije (prikaz podataka po stranicama).
+• Dinami ˇckog u ˇcitavanja (lazy loading).
+• Filtriranja podataka prije prikaza.
+3.1.9 Preporuka
+Za manje aplikacije i potrebe demonstracije može se koristiti CSV format. Me ¯dutim,
+kada je cilj optimizirati performanse i pojednostaviti rad s podacima, preporu ˇcuje se
+konverzija u JSON format.
+Napomena:Svaki put kada se koristi CSV datoteka, parsiranje se izvršava pri
+svakom osvježavanju stranice, što može usporiti aplikaciju kod ve ´cih datoteka.
+10
+--- PAGE 11 ---
+3.1.10 Prikazivanje podataka
+Nakon što su podaci parsirani i obra ¯deni, potrebno ih je prikazati korisniku u pregled-
+nom formatu. Za tu svrhu koristi se funkcijaprikaziTablicu(filmovi), koja di-
+nami ˇcki generira HTML tablicu na temelju niza objekata. Funkcija omogu ´cuje višestruko
+pozivanje, ˇcime se sadržaj tablice može ažurirati ovisno o korisni ˇckim akcijama poput
+filtriranja ili sortiranja.
+Kako bi se korisniku odmah prikazao po ˇcetni skup podataka, koristi se metoda
+slice(), kojom se iz cjelokupnog niza podataka izdvaja odre ¯deni broj elemenata. U
+sljede ´cem primjeru, dohva ´ca se prvih 150 filmova iz nizafilmovi:
+constprvih20 = filmovi.slice(0, 150);
+prikaziTablicu(prvih20);
+Objašnjenje koda:
+•filmovi.slice(0, 150)— metodaslicevra ´ca novi niz koji sadrži ele-
+mente od indeksa 0 do 149 (ukupno 150 elemenata). Na ovaj na ˇcin sprje ˇcava
+se preoptere ´cenje su ˇcelja prikazom prevelike koli ˇcine podataka odjednom.
+• Rezultat se sprema u varijabluprvih20(naziv varijable može biti precizniji, npr.
+prvih150).
+• FunkcijaprikaziTablicu(prvih20)poziva se s ovim nizom i generira odgo-
+varaju ´ce redove unutar HTML tablice.
+U slu ˇcaju da do ¯de do pogreške prilikom dohva ´canja ili parsiranja CSV datoteke,
+koristi se metodacatch(), kojom se hvata greška i ispisuje informativna poruka u
+konzolu preglednika:
+.catch(err => {
+console.error(’Greska pri dohvacanju CSV-a:’, err);
+});
+Ova struktura osigurava robusnost aplikacije, jer omogu ´cuje detekciju potencijalnih
+problema pri radu s vanjskim datotekama.
+FunkcijaprikaziTablicu()omogu ´cuje dinami ˇcko i pregledno prikazivanje po-
+dataka iz datoteke, te služi kao osnova za dodatne funkcionalnosti poput sortiranja,
+filtriranja i reagiranja na korisni ˇcke akcije, kada ´ce se prikazivati samo oni podaci koji
+zadovoljavaju postavljene kriterije.
+functionprikaziTablicu(filmovi) {
+consttbody = document.querySelector(’#filmovi-tablica tbody’)
+;
+tbody.innerHTML = ’’;// ocisti ako postoji
+for(constfilm of filmovi) {
+constrow = document.createElement(’tr’);
+row.innerHTML = ‘
+<td>${film.title}</td>
+<td>${film.year}</td>
+<td>${film.genre}</td>
+11
+--- PAGE 12 ---
+<td>${film.duration}</td>
+<td>${film.country.join(’, ’)}</td>
+<td>${film.total_votes}</td>
+‘;
+tbody.appendChild(row);
+}
+}
+Opis funkcionalnosti:
+•document.querySelector(...)dohva ´ca<tbody>dio tablice u koji se
+ume´cu redci.
+•tbody.innerHTML = ’ ’- briše se prethodni sadržaj kako bi se prikaz ažuri-
+rao.
+• Za svaki film se kreira redak<tr>s ´celijama<td>za sve relevantne podatke.
+• Ako je poljecountryniz (što bi trebalo biti), njegove se vrijednosti spajaju u
+jedan string odvojen zarezima.
+Kako bi ova naredba ispravno funkcionirala, potrebno je u HTML dokumentu defini-
+rati tablicu s odgovaraju ´cim identifikatorom, npr.:
+<table id="filmovi-tablica">
+<thead>
+<tr>
+<th>Naslov</th>
+<th>Godina</th>
+<th>Zanr</th>
+...
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+U ovom slu ˇcaju, u JavaScript kodu koristimo:
+consttbody = document.querySelector(’#filmovi-tablica tbody’)
+;
+Na ovaj na ˇcin selektiramo upravo<tbody>unutar tablice koja ima atribut
+id="filmovi-tablica".
+3.1.11 Korištenje ternarnog operatora za formatiranje podataka
+Prilikom izrade datotekescripts.jsvažno je obratiti pažnju na uskla ¯denost sa za-
+glavljem tablice te na na ˇcin na koji su podaci pohranjeni u svakoj varijabli. Na primjer,
+za varijablucountryu dokumentu s filmovima, jedan film može imati više država.
+Pravilna obrada ovog podatka omogu ´cuje ispravan prikaz u tablici, kao što je prikazano
+na slici 2.
+U tom slu ˇcaju u script.js je mogu ´ce staviti ternarni operator u ovisnosti za što že-
+limo koristiti podatke prikazane u odgovaraju ´cem stupcu.
+12
+--- PAGE 13 ---
+Slika 2: Primjer rješenja prikaza podataka iz filmovi.csv
+Primjena ternarnog operatora u obradi poljacountry
+U JavaScriptu je mogu ´ce koristititernarni operatorkao kra ´ci zapis za jednostavne
+if-elseuvjete. Ternarni operator ima sljede ´cu op ´cu formu:
+uvjet ? vrijednostAkoJeIstina : vrijednostAkoJeNeistina
+Koristi se kada želimo izraziti odluku izme ¯du dviju vrijednosti na osnovi jednog
+logiˇckog uvjeta, pri ˇcemu se izražava unutar jedne linije koda. U kontekstu obrade
+CSV podataka, to može biti korisno za uvjetno parsiranje polja koja mogu sadržavati
+višestruke vrijednosti (npr. više država u poljucountry).
+Primjer iz koda
+country: film.country?.includes(’,’)
+? film.country.split(’,’).map(c => c.trim()).join(’, ’)
+: film.country
+Analiza:
+•film.country?.includes(’,’)
+Predstavljauvjet– provjerava sadrži li string zarez (što implicira više vrijednosti u
+jednom zapisu). Operator?.(optional chaining) osigurava da se provjera izvrši
+samo ako objektfilm.countrynijenullnitiundefined, ˇcime se sprje ˇcava
+izbacivanje pogreške.
+•film.country.split(’,’).map(c => c.trim()).join(’, ’)
+Ovo jevrijednost izraza ako je uvjet istinit. Prvo se string razdvaja po zarez-
+ima (split), zatim se svaki dio reže od suvišnih razmaka (trim), i naposljetku
+se sve vrijednosti ponovno spajaju u jedan string s razmakom nakon zareza
+(join).
+•film.country
+Ako uvjet nije zadovoljen (dakle, radi se o samo jednoj državi), koristi se origi-
+nalna vrijednost bez dodatne obrade.
+13
+--- PAGE 14 ---
+Ovakav izraz omogu ´cuje da se korisniku u prikazu dosljedno prikaže lista država u
+ˇcitkom formatu, neovisno o tome je li u podacima navedena jedna ili više njih.
+Ovaj oblik je posebno pogodan kada:
+• Želimo posti ´ciˇcitljiv tekstualni prikaz podataka koji mogu sadržavati više vrijed-
+nosti
+• Želimo kompaktniji i elegantniji zapis umjesto klasi ˇcneif-elsestrukture
+• Nema potrebe za daljnjom programskom obradom pojedina ˇcnih vrijednosti
+Napomena:Ako se planira raditi složenija obrada pojedina ˇcnih stavki (npr. filtri-
+ranje po zemlji), tada je prikladnije koristitiniz(array) umjesto spojenog stringa.
+U tom slu ˇcaju može se koristiti izraz:
+country: film.country?.split(’,’).map(c => c.trim()) || []
+koji kao rezultat uvijek daje niz stringova, neovisno o tome postoji li jedna ili više
+država u izvornom polju.
+Primjeri primjene: prikaz u tablici vs. filtriranje po državi
+U nastavku su prikazana dva konkretna primjera u kojima se koristi podatakcountry
+– jedan za prikaz podataka, a drugi za funkcionalnu obradu (filtriranje).
+Primjer 1: prikaz u HTML tablici
+Ako želimo samo prikazati podatke u HTML tablici, tada je dovoljno koristiti tekstualni
+oblik – dakle, rezultat ternarnog izraza je string.
+<td>${film.country}</td>
+U tom slu ˇcaju vrijednostcountrymože biti definirana ovako:
+country: film.country?.includes(’,’)
+? film.country.split(’,’).map(c => c.trim()).join(’, ’)
+: film.country
+Rezultat ´ce biti ˇcitljiv tekst: npr."United States, Canada", spreman za prikaz
+korisniku bez dodatne obrade.
+Primjer 2: filtriranje po državi
+Ako korisnik u su ˇcelju odabire npr.France, tada želimo prona ´ci sve filmove koji
+uklju ˇcuju tu državu, bez obzira je li navedena samostalno ili u kombinaciji s drugima.
+Tada je prikladnije koristiti pristup koji vra ´ca niz:
+country: film.country?.split(’,’).map(c => c.trim()) || []
+Filtriranje se može provesti na sljede ´ci na ˇcin:
+const odabranaDrzava = ’France’;
+const rezultati = sviFilmovi.filter(film =>
+film.country.includes(odabranaDrzava)
+);
+14
+--- PAGE 15 ---
+U ovom primjeru:
+•film.countryje niz, pa metodaincludesprovjerava nalazi li se tražena
+država unutar njega
+• dobivamo fleksibilan na ˇcin obrade, jer možemo pretraživati i kombinacije kao što
+su"France, Italy"i sli ˇcno
+Zaklju ˇcak
+• Za potrebeprikazapodataka koristi se string koji je dobiven obradom pomo ´cu
+ternarnog operatora i metodejoin(’, ’).
+• Za potrebeobradeifiltriranjapodataka koristi se niz vrijednosti, dobiven razd-
+vajanjem teksta metodomsplit(’,’)i dodatnom obradom metodommap(trim).
+3.2 Zadatak 2. Filtriranje i pretraživanje
+Potrebno je omogu ´citi korisniku da filtrira prikazane podatke prema zadanim kriteri-
+jima. Primjeri filtriranja uklju ˇcuju:
+• za filmove: filtriranje po žanru, državi, rasponu godina ili minimalnoj ocjeni;
+• za glazbu: filtriranje po žanru, godini, tempu ili raspoloženju.
+Filtriranje se može implementirati pomo ´cu padaju ´cih izbornika, tekstualnih polja
+za unos, radio gumba ili raspona vrijednosti (npr.input type="range"). Rezultati
+filtriranja trebaju se odmah prikazati korisniku, bez ponovnog u ˇcitavanja stranice.
+Napomena:Potrebno je implementiratiminimalno tri (3)razli ˇcita kriterija za filtri-
+ranje. Korišteni elementi filtriranja moraju biti razli ˇciti po vrsti(npr. kombinacija pada-
+ju´ceg izbornika, tekstualnog polja i slidera)i/ili se odnositi na razli ˇcite varijable u odnosu
+na primjere prikazane u predlošku.
+Nije dozvoljenokoristiti identi ˇcne kriterije i vrste elemenata kao u predlošku.
+3.2.1 Koraci za rješavanje
+• Primprema HTML strukture - osigurati da korisnik ima su ˇcelje za unos kriterija
+filtriranja - tri razli ˇcite vrste filtriranja (text, slider, radio), urediti pomo ´cu CSS-a;
+• Povezivanje filtera s JavaScriptom - dodatievent listenerna gumb "Filtriraj"
+(na primjer);
+• prikaz filtriranih podataka - koristiti ve ´c postoje ´cu funkciju;prikaziTablicu(filmovi)
+koja je definirana za dinami ˇcki prikaz;
+• dinami ˇcko ažuriranje vrijednosti zarangeinput - da korisnik vidi koju je vrijed-
+nost postavio.
+15
+--- PAGE 16 ---
+Primjer 6: Primjer filtera u HTML dokumentu
+<!-- Filtri -->
+<div id="filteri">
+<select id="filter-genre">
+<option value="">-- Odaberi zanr --</option>
+<option value="Comedy">Comedy</option>
+<option value="Drama">Drama</option>
+<!-- Ostali zanrovi -->
+</select>
+<input type="number" id="filter-year" placeholder="Godina od">
+<select id="filter-country">
+<option value="">-- Odaberi drzavu --</option>
+<option value="United States">United States</option>
+<option value="Italy">Italy</option>
+<!-- Ostale drzave -->
+</select>
+<input type="range" id="filter-rating" min="0" max="10" step="
+0.1" value="7">
+<span id="rating-value">7.0</span>
+<button id="primijeni-filtere">Filtriraj</button>
+</div>
+<!-- Tablica -->
+<table id="filmovi-tablica">
+<thead>
+<tr>
+<th>Naslov</th>
+<th>Godina</th>
+<th>Zanr</th>
+<th>Trajanje</th>
+<th>Drzava</th>
+<th>Ocjena</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+Napredni savjet: Višestruko filtriranjeZa studente koji žele dodatno unaprijediti
+svoju aplikaciju, preporu ˇcuje se implementacija mogu ´cnosti višestrukog odabira kod
+odre ¯denih filtera, poput žanra ili države.
+Primjerice, umjesto klasi ˇcnog padaju ´ceg izbornika (<select>), može se koristiti
+opcijamultiplekoja omogu ´cuje odabir više vrijednosti:
+Primjer 7: Primjer višestrukog odabira žanra
+<select id="filter-genre" multiple>
+<option value="Comedy">Comedy</option>
+16
+--- PAGE 17 ---
+<option value="Drama">Drama</option>
+<option value="Action">Action</option>
+</select>
+U JavaScript dijelu, dohva ´canje svih odabranih vrijednosti može se ostvariti na
+sljede ´ci na ˇcin:
+Primjer 8: Dohva ´canje više odabranih žanrova
+constselectedGenres = Array.from(document.getElementById(’
+filter-genre’).selectedOptions)
+.map(option => option.value);
+Prilikom filtriranja potrebno je provjeriti sadrži li film barem jedan od odabranih žan-
+rova:
+constfiltriraniFilmovi = filmovi.filter(film => {
+return(selectedGenres.length === 0 || selectedGenres.
+some(g => film.genre.includes(g)));
+// Ostali filteri...
+});
+Napomena:Ovakav pristup omogu ´cuje korisnicima fleksibilnije pretraživanje i do-
+datno poboljšava korisni ˇcko iskustvo aplikacije.
+17
+--- PAGE 18 ---
+3.3 Struktura JavaScript koda za dohvat i prikaz podataka
+JavaScript rješenje sastoji se od nekoliko logi ˇckih cjelina koje omogu ´cuju dohvat po-
+dataka iz CSV datoteke, po ˇcetni prikaz filmova te filtriranje prema zadanim kriterijima.
+3.3.1 Dohvat i parsiranje podataka iz CSV-a
+Iako je ve ´c gore spomenuto parsiranje, bito je Na po ˇcetku skripte koristi se funkcija
+fetch()za dohvat CSV datoteke, a bibliotekaPapaParseza parsiranje podataka u
+format pogodan za daljnju obradu:
+Primjer 9: Dohvat i parsiranje CSV datoteke
+letsviFilmovi = [];
+fetch(’filmtv_movies.csv’)
+.then(res => res.text())
+.then(csv => {
+constrezultat = Papa.parse(csv, {
+header: true,
+skipEmptyLines: true
+});
+sviFilmovi = rezultat.data.map(film => ({
+title: film.title,
+year: Number(film.year),
+genre: film.genre,
+duration: Number(film.duration),
+country: film.country?.split(’,’).map(c => c.trim
+()) || [],
+avg_vote: Number(film.avg_vote),
+total_votes: Number(film.total_votes)
+}));
+prikaziPocetneFilmove(sviFilmovi.slice(0, 10));
+prikaziFiltriraneFilmove(sviFilmovi.slice(0, 10));
+})
+.catch(err => {
+console.error(’Greska pri dohvacanju CSV-a:’, err);
+});
+Objašnjenje:
+•fetch()dohva ´ca CSV datoteku asinkrono.
+•Papa.parse()pretvara CSV u niz objekata.
+• Metodamap()obra ¯duje podatke i osigurava ispravan tip za broj ˇcane vrijednosti.
+• FunkcijeprikaziPocetneFilmoveiprikaziFiltriraneFilmoveprikazuju
+poˇcetni set filmova.
+18
+--- PAGE 19 ---
+Lokalna i globalna pohrana podataka
+Prilikom obrade podataka iz CSV datoteke, važno je odabrati odgovaraju ´ci na ˇcin spre-
+manja podataka, ovisno o potrebama aplikacije.
+U po ˇcetnoj verziji koda (u Zad1, 3.1.2)), podaci su se spremali u lokalnu varijablu
+filmunutar funkcije za dohvat i parsiranje CSV-a.
+Ovakav na ˇcin pohrane koristiconstvarijablufilmovi, koja je dostupna isklju ˇcivo
+unutar bloka gdje je definirana. To je primjereno kada su podaci potrebni samo za
+inicijalni prikaz ili jednokratnu obradu.
+Me¯dutim, kako aplikacija raste i dodaju se nove funkcionalnosti poput filtriranja i
+upravljanja košaricom, potrebno je omogu ´citi pristup tim podacima i izvan po ˇcetnog
+bloka. U tu svrhu koristi se globalna varijabla definirana sletizvan funkcije:
+let sviFilmovi = [];
+Korištenjem globalne varijablesviFilmovi, omogu ´cuje se pristup istim podacima
+u razli ˇcitim dijelovima aplikacije, primjerice za:
+• Dinami ˇcki prikaz po ˇcetnih podataka.
+• Filtriranje prema korisni ˇckim kriterijima.
+• Dodavanje filmova u košaricu.
+Lokalne varijable (const) koriste se kada je potreban ograni ˇcen doseg (eng.scope),
+dok se globalne varijable (let) koriste kada su podaci potrebni za višestruke operacije
+kroz razli ˇcite funkcije aplikacije. Pravilnim odabirom tipa varijable pove ´cava se ˇcitljivost
+i funkcionalnost koda.
+3.3.2 Prikaz po ˇcetnih filmova
+Ova funkcija dinami ˇcki puni tablicu s prvim filmovima iz baze podataka.
+Primjer 10: Prikaz po ˇcetnih filmova
+functionprikaziPocetneFilmove(filmovi) {
+consttbody = document.querySelector(’#filmovi-tablica
+tbody’);
+tbody.innerHTML = ’’;
+for(constfilm of filmovi) {
+constrow = document.createElement(’tr’);
+row.innerHTML = ‘
+<td>${film.title}</td>
+<td>${film.year}</td>
+<td>${film.genre}</td>
+<td>${film.duration} min</td>
+<td>${film.country.join(’, ’)}</td>
+<td>${film.total_votes}</td>
+‘;
+tbody.appendChild(row);
+}
+}
+19
+--- PAGE 20 ---
+Objašnjenje:
+• Pomo ´cudocument.querySelectordohva ´ca se<tbody>unutar tablice.
+• Svaki film se prikazuje kao novi redak (<tr>).
+3.3.3 Ažuriranje prikaza vrijednosti slidera
+Slider omogu ´cuje korisniku da odabere minimalnu ocjenu za filtriranje filmova. Vrijed-
+nost se dinami ˇcki prikazuje pokraj slidera.
+Primjer 11: Ažuriranje vrijednosti slidera
+constrangeInput = document.getElementById(’filter-rating’);
+constratingDisplay = document.getElementById(’rating-value’);
+rangeInput.addEventListener(’input’, () => {
+ratingDisplay.textContent = rangeInput.value;
+});
+3.3.4 Filtriranje filmova prema kriterijima
+Glavna funkcija za filtriranje dohva ´ca vrijednosti iz formi i primjenjuje filtere na sve
+filmove.
+Primjer 12: Filtriranje filmova
+functionfiltriraj() {
+constzanr = document.getElementById(’filter-genre’).
+value.trim().toLowerCase();
+constgodinaOd = parseInt(document.getElementById(’
+filter-year-from’).value);
+constdrzava = document.getElementById(’filter-country’)
+.value.trim().toLowerCase();
+constocjena = parseFloat(document.getElementById(’
+filter-rating’).value);
+constfiltriraniFilmovi = sviFilmovi.filter(film => {
+constzanrMatch = !zanr || film.genre.toLowerCase
+().includes(zanr);
+constgodinaOdMatch = !godinaOd || film.year >=
+godinaOd;
+constdrzavaMatch = !drzava || film.country.some(c
+=> c.toLowerCase().includes(drzava));
+constocjenaMatch = film.avg_vote >= ocjena;
+returnzanrMatch && godinaOdMatch && drzavaMatch
+&& ocjenaMatch;
+});
+prikaziFiltriraneFilmove(filtriraniFilmovi);
+}
+Objašnjenje:
+• Svaki kriterij provjerava je li polje prazno ili odgovara uvjetima.
+• Metodafilter()vra ´ca samo one filmove koji zadovoljavaju sve uvjete.
+20
+--- PAGE 21 ---
+3.3.5 Pozivanje funkcije filtriranja
+Klikom na gumbFiltriraj, pokre ´ce se funkcija za filtriranje:
+Primjer 13: Pokretanje filtriranja
+document.getElementById(’primijeni-filtere’).addEventListener(
+’click’, filtriraj);
+3.3.6 Prikaz filtriranih rezultata
+Filtrirani filmovi prikazuju se u drugoj tablici:
+Primjer 14: Prikaz filtriranih filmova
+functionprikaziFiltriraneFilmove(filmovi) {
+consttbody = document.querySelector(’#
+filtriranje_tablica tbody’);
+tbody.innerHTML = ’’;
+if(filmovi.length === 0) {
+tbody.innerHTML = ’<tr><td colspan="6">Nema
+filmova zaodabrane filtre.</td></tr>’;
+return;
+}
+for(constfilm of filmovi) {
+constrow = document.createElement(’tr’);
+row.innerHTML = ‘
+<td>${film.title}</td>
+<td>${film.year}</td>
+<td>${film.genre}</td>
+<td>${film.duration} min</td>
+<td>${film.country.join(’, ’)}</td>
+<td>${film.avg_vote}</td>
+‘;
+tbody.appendChild(row);
+}
+}
+Napomena:Ako nema rezultata, prikazuje se poruka korisniku unutar tablice.
+21
+--- PAGE 22 ---
+Slika 3: Primjer rješenja prikaza filtriranih podataka
+22
+--- PAGE 23 ---
+3.4 Zadatak 3. Interaktivno upravljanje sadržajem (npr. doda-
+vanje u košaricu/plan).
+Cilj ovog zadatka je omogu ´citi korisniku interaktivno upravljanje filtriranim podacima
+kroz funkcionalnost dodavanja elemenata u "košaricu", pregled košarice, uklanjanje
+elemenata iz košarice, te potvrdu odabira.
+Opis funkcionalnosti
+• Nakon filtriranja elemenata, uz svaki element potrebno je prikazati gumbDodaj
+u košaricu.
+• Klikom na gumb, element se dodaje u košaricu (koristiti JavaScript niz).
+• Omogu ´citi pregled košarice u posebnoj tablici ili sekciji stranice.
+• U košarici omogu ´citi:
+–Prikaz svih dodanih filmova (naslov, godina, žanr).
+–Gumb za uklanjanje pojedinog filma iz košarice.
+–GumbPotvrdi posudbu.
+• Nakon potvrde, prikazati obavijest korisniku o uspješnoj posudbi filmova.
+Napomena:Prikaz košarice može biti implementiran na razli ˇcite na ˇcine, ovisno o
+dizajnu i preferencijama. Neki od mogu ´cih pristupa uklju ˇcuju:
+•Aside element: Prikaz košarice sa strane stranice, stalno vidljiv ili prikazan na
+zahtjev.
+•Dropdown izbornik: Košarica se prikazuje kada korisnik klikne na ikonu ili
+gumb, sli ˇcno kao u web trgovinama.
+•Nova HTML stranica: Omogu ´citi korisniku da klikne naPregled košarice
+koji ga vodi na novu stranicu gdje može vidjeti detalje odabranih filmova.
+•Modalni prozor (opc.):Prikaz košarice u sko ˇcnom prozoru bez napuštanja
+trenutne stranice.
+Odaberite pristup koji najbolje odgovara vašem korisni ˇckom su ˇcelju i osigurajte da
+je korisniku jasno vidljiv broj odabranih filmova te mogu ´cnost pregleda i ure ¯divanja
+košarice.
+Primjer korištenja
+1. Korisnik filtrira filmove prema željenim kriterijima.
+2. Iz prikazanih rezultata odabire 3 filma klikom naDodaj u košaricu.
+3. Otvara prikaz košarice gdje vidi popis odabranih filmova.
+4. Uklanja jedan film iz košarice.
+5. Klikom naPotvrdi posudbu, prikazuje se poruka:
+"Uspješno ste dodali 2 filma u svoju košaricu za vikend maraton!"
+23
+--- PAGE 24 ---
+Tehni ˇcke upute
+• Za pohranu košarice koristiti JavaScript niz (opcionalno:LocalStorageza tra-
+jnost podataka).
+• Svaki film u tablici filtriranih rezultata mora imati gumb za dodavanje.
+• Dinami ˇcki generirati prikaz košarice kroz DOM manipulaciju.
+• Osigurati da korisnik može ukloniti filmove prije potvrde.
+• Prikazati obavijest nakon potvrde (alert, modalni prozor ili jednostavna poruka
+na stranici).
+Primjer implementiranja zadatka, odnosno dodavanje filmova u košaricu s prika-
+zom košarice u aside elementu.
+U ovom zadatku potrebno je implementirati funkcionalnost dodavanja filmova u
+"košaricu", pregled košarice, uklanjanje filmova te potvrdu odabira uz prikaz obavijesti.
+Struktura rješenja
+Rjesenje se sastoji od tri glavna dijela:
+1.HTML– definiranje prostora za prikaz košarice.
+2.JavaScript– logika za dodavanje, uklanjanje i potvrdu odabira filmova.
+3.CSS– osnovno stiliziranje košarice.
+HTML – Definiranje košarice
+Za prikaz košarice koristi se HTML element<aside>koji omogu ´cava da košarica
+bude vidljiva korisniku tijekom koristenja aplikacije.
+Primjer 15: HTML struktura košarice
+<aside id="kosarica">
+<h2>Moja kosarica</h2>
+<ul id="lista-kosarice">
+<!-- Dinamicki popunjeno -->
+</ul>
+<button id="potvrdi-kosaricu">Potvrdi odabir</button>
+</aside>
+Tako ¯der, u tablicu s filtriranim filmovima dodaje se novi stupac s gumbom za doda-
+vanje filma u košaricu.
+Primjer 16: Dodavanje gumba u tablicu
+// Funkcija za prikaz filtriranih filmova
+functionprikaziFiltriraneFilmove(filmovi) {
+consttbody = document.querySelector(’#filtriranje_tablica
+tbody’);
+tbody.innerHTML = ’’;// "brise" sav trenutni sadrzaj unutar <
+ul> elementa.
+24
+--- PAGE 25 ---
+if(filmovi.length === 0) {
+tbody.innerHTML = ’<tr><td colspan="6">Nema filmova za
+odabrane filtre.</td></tr>’;
+return;
+}
+for(constfilm of filmovi) {
+constrow = document.createElement(’tr’);
+row.innerHTML = ‘
+<td>${film.title}</td>
+<td>${film.year}</td>
+<td>${film.genre}</td>
+<td>${film.duration} min</td>
+<td>${film.country.join(’, ’)}</td>
+<td>${film.avg_vote}</td>
+‘;
+tbody.appendChild(row);
+}
+}
+JavaScript – Logika upravljanja košaricom
+Primjer 17: Dodavanje filmova u košaricu
+letkosarica = [];
+functiondodajUKosaricu(film) {
+if(!kosarica.includes(film)) {
+kosarica.push(film);
+osvjeziKosaricu();
+}else{
+alert("Film jevec ukosarici!");
+}
+}
+functionosvjeziKosaricu() {
+constlista = document.getElementById(’lista-kosarice’);
+lista.innerHTML = ’’;
+kosarica.forEach((film, index) => {
+constli = document.createElement(’li’);
+li.textContent = film.title;
+constukloniBtn = document.createElement(’button’);
+ukloniBtn.textContent = ’Ukloni’;
+ukloniBtn.addEventListener(’click’, () => {
+ukloniIzKosarice(index);
+});
+25
+--- PAGE 26 ---
+li.appendChild(ukloniBtn);
+lista.appendChild(li);
+});
+}
+functionukloniIzKosarice(index) {
+kosarica.splice(index, 1);
+osvjeziKosaricu();
+}
+// Potvrda kosarice
+document.getElementById(’potvrdi-kosaricu’).addEventListener(’click’
+, () => {
+if(kosarica.length === 0) {
+alert("Kosarica jeprazna!");
+}else{
+alert(‘Uspjesno ste odabrali ${kosarica.length} filmova
+za gledanje!‘);
+kosarica = [];
+osvjeziKosaricu();
+}
+});
+CSS – Stiliziranje košarice
+Za bolju preglednost, košarica se stilizira i postavlja sa strane.
+Primjer 18: Osnovni stil za košaricu
+#kosarica {
+position: fixed;
+right: 20px;
+top: 100px;
+width: 250px;
+background-color: #f4f4f4;
+border: 1px solid #ccc;
+padding: 10px;
+}
+#kosarica ul {
+list-style-type: none;
+padding: 0;
+}
+#kosarica button {
+margin-top: 10px;
+}
+26
+--- PAGE 27 ---
+Napomena
+Gore navedenim dijelovima koda može se prilagodit izgled košarice prema vlastitim
+idejama:
+• Prikaz udropdownizborniku.
+• Otvaranje nove HTML stranice za detaljan pregled košarice.
+• Spremanje odabranih filmova uLocalStorageza trajno cuvanje.
+Slika 4: Primjer rješenja prikaza podataka u košarici
+27
+--- PAGE 28 ---
+3.5 Dodatno: EJS kao alternativa
+Studenti koji žele dodatno proširiti zadatak mogu koristitiEJSpredloške za generiranje
+sadržaja na strani poslužitelja. Umjesto da JavaScript u pregledniku dinami ˇcki popun-
+java HTML, podaci se mogu pro ˇcitati na serveru i prikazati korištenjem.ejspred-
+ložaka. Ova metoda može se koristiti kao alternativa prikazu tablice pomo ´cu DOM
+manipulacije uscript.js.
+U ovoj verziji projekta koristi se tehnologijaEJSza generiranje HTML sadržaja na
+strani poslužitelja. Podaci se ˇcitaju pomo ´cu Node.js modula (npr.fsilicsv-parser),
+a zatim se proslje ¯duju EJS predlošcima koji dinami ˇcki generiraju HTML. Prikazani
+sadržaj zatim se poslužuje klijentu putem ruta definiranih u Express aplikaciji.
+my-project/
+public/
+style.css
+views/
+index.ejs
+filmovi.ejs
+data/
+filmovi.json
+routes/
+index.js
+app.js
+package.json
+Slika 5: Primjer strukture projekta s korištenjem EJS predložaka
+28
+--- PAGE 29 ---
+4 Opis implementacije projekata
+U nastavku predloška nalazi se kratak opis na ˇcina na koji je realizirano rješenje za-
+datka. Radi boljeg razumijevanja dokumentiranja rada te lakšeg razumijevanja imple-
+mentiranih funkcionalnosti potrebno je prou ˇciti odgovaraju ´ci projekt
+4.1 Web aplikacija za planiranje liste za slušanje
+Cilj
+Cilj ove laboratorijske vježbe je izraditi interaktivnu web aplikaciju koja omogu ´cuje ko-
+risnicima planiranje liste za slušanje (playlist). Korištenjem zadanog skupa podataka
+o raznim bendovima, potrebno je omogu ´citi filtriranje s poželjnim kriterijima te dodati
+pojedine pjesme na listu za slušanje.
+Korisni ˇcka pri ˇca
+Marko je strastveni ljubitelj glazbe i želi kreirati savršenu playlistu za svoje nadolaze ´ce
+proljetne vožnje biciklom. No, ima ogromnu bazu pjesama i nema vremena ru ˇcno
+pregledavati svaku od njih. Koristi aplikaciju koja mu omogu ´cuje da filtrira pjesme
+prema idealnim karakteristikama: žanr (npr. Rock ili Pop), brži tempo (BPM), godina
+izdanja i raspoloženje (energi ˇcno). Nakon što odabere odgovaraju ´ce pjesme, sprema
+ih u svoj novi plan slušanja (playlistu) kako bi imao spreman set hitova za vožnju.
+Opis zadatka
+Potrebno je izraditi web aplikaciju koja omogu ´cuje:
+•Prikaz podataka o pjesmamau tabli ˇcnom obliku (npr. Naziv, Izvo ¯daˇc, Žanr,
+Trajanje, BPM).
+•Filtriranje podatakaprema žanru, godini izdanja, tempu (BPM) ili popularnosti
+–minimalno tri vrste filtriranja.
+•Dodavanje odabranih pjesamau "Plan slušanja" (Playlistu).
+•Pregled i uklanjanje pjesamaiz plana – pomo ´cu bo ˇcne trake (aside), pada-
+ju´ceg izbornika (dropdown) ili zasebne HTML stranice.
+•Prikaz informativne poruke(npr. "Playlista uspješno spremljena!") nakon potvrde
+plana.
+Primjer korištenja aplikacije
+Korisnik koristi aplikaciju na sljede ´ci na ˇcin:
+1.Odabire filtre:
+•Žanr:Rock
+•Raspoloženje:Energetic
+•Tempo (BPM):120 – 140 BPM
+29
+--- PAGE 30 ---
+•Godina izdanja:2010. – 2024.
+2. Aplikacija prikazuje svepjesmekoje zadovoljavaju odabrane kriterije (npr. brze
+rock pjesme iz novijeg razdoblja).
+3. Korisnik klikne na gumb"Dodaj u playlistu"za pjesme koje želi uklju ˇciti u svoj
+izbor.
+4. Korisnik ima mogu ´cnostuklonitineželjene pjesme iz privremenog popisa ako
+se predomisli.
+5. Nakon odabira, korisnik klikne na"Pregled playliste"(ili gumb za potvrdu) i
+dobiva kona ˇcni prikaz odabranih pjesama spremnih za spremanje.
+Tehni ˇcke upute
+• Podatke u ˇcitati iz CSV datoteke korištenjem bibliotekePapaParse.
+• Sva logika mora biti implementirana na klijentskoj strani (HTML, CSS, JavaScript).
+• Koristiti jednostavan, pregledan dizajn.
+• Omogu ´citi dinami ˇcku manipulaciju DOM elementima.
+Predaja rješenja
+• Projekt postaviti na GitHub.
+• Aplikaciju objaviti na besplatnom hosting servisu (npr. Vercel, Netlify, Railway).
+• UREADME.mddokumentu navesti kratak opis aplikacije, funkcionalnosti i poveznicu
+na objavljenu aplikaciju.
+4.2 Web aplikacija - Virtualna videoteka
+Cilj
+Cilj ove laboratorijske vježbe je izraditi interaktivnu web aplikaciju koja omogu ´cuje ko-
+risnicima pregled, pretraživanje i odabir filmova iz virtualne videoteke. Korištenjem
+zadanog skupa podataka o filmovima, potrebno je implementirati funkcionalnosti filtri-
+ranja, sortiranja te dodavanja filmova u "košaricu za posudbu".
+Korisni ˇcka pri ˇca
+Ana je ljubiteljica filmova i želi kreirati svoj popis filmova za vikend maraton. Umjesto
+da pretražuje nepregledne liste, koristi aplikaciju koja joj omogu ´cuje da filtrira filmove
+prema žanru, godini ili zemlji proizvodnje. Kada prona ¯de filmove koji joj se svi ¯daju,
+dodaje ih u svoju "košaricu za posudbu" kako bi lakše pratila što želi gledati.
+30
+--- PAGE 31 ---
+Opis zadatka
+Potrebno je izraditi web aplikaciju koja omogu ´cuje:
+• Prikaz podataka o filmovima u tabli ˇcnom obliku (naslov, godina, žanr, trajanje,
+država, ocjena).
+• Filtriranje filmova prema žanru, godini proizvodnje (od-do) i zemlji.
+• Sortiranje filmova po godini ili broju glasova.
+• Dodavanje filmova u "košaricu za posudbu".
+• Pregled i uklanjanje filmova iz košarice.
+• Prikaz obavijesti nakon potvrde odabira filmova.
+Napomena:Poljecountrymože sadržavati više država, potrebno je obratiti pažnju
+na formatiranje prilikom prikaza.
+Primjer korištenja aplikacije
+• Korisnik otvara aplikaciju i filtrira filmove prema:
+– Žanr: Comedy
+– Godina: od 1980 do 2000.
+– Država: United States
+– Prosje ˇcna ocjena: izme ¯du 7.0 i 10.0
+• Aplikacija prikazuje sve filmove koji zadovoljavaju postavljene uvjete.
+• Korisnik odabire 3 filma i dodaje ih u "košaricu za posudbu".
+• Klikom na "Pregled košarice", korisniku se prikazuje popis odabranih filmova s
+mogu ´cnoš ´cu uklanjanja pojedinih naslova.
+• Nakon potvrde, prikazuje se poruka, u ovisnosti koliko je dodano filmova:
+"Uspješno ste dodali 3 filma u svoju košaricu za vikend maraton!"
+Tehni ˇcke upute
+• Podatke u ˇcitati iz CSV datoteke korištenjem bibliotekePapaParseili koristiti
+prethodno pripremljeni JSON.
+• Implementirati logiku isklju ˇcivo na klijentskoj strani (HTML, CSS, JavaScript).
+• Omogu ´citi dinami ˇcki prikaz i manipulaciju podacima kroz DOM.
+• Dizajnirati pregledno korisni ˇcko su ˇcelje uz osnovno stiliziranje tablice.
+31
+--- PAGE 32 ---
+Predaja rješenja
+• Projekt postaviti na GitHub.
+• Aplikaciju objaviti na besplatnom hosting servisu (npr. Vercel, Netlify, Railway).
+• UREADME.mddokumentu navesti opis aplikacije, popis funkcionalnosti i poveznicu
+na objavljenu verziju aplikacije.
+32

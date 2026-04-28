@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grafički prikaz filmova po žanrovima">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Grafikon</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Grafikon filmova</h1>
+        <div class="nav-wrapper">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            <label for="menu-toggle" class="hamburger" aria-label="Otvori navigaciju">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav aria-labelledby="primarna-navigacija" class="glavna-navigacija">
+                <h2 id="primarna-navigacija">Primarna navigacija</h2>
+                <ul>
+                    <li><a href="/">Početna</a></li>
+                    <li><a href="/grafikon.html">Grafikon</a></li>
+                    <li><a href="/slike">Galerija</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="uvod">
+            <h2>Opis grafikona</h2>
+            <p>
+                Ovaj grafikon prikazuje koliko se puta pojedini žanr pojavljuje među
+                prvih 20 filmova iz baze podataka.
+            </p>
+        </section>
+
+        <section class="grafikon">
+            <h2>Broj filmova po žanru</h2>
+
+            <div class="chart">
+
+                <div class="bar" style="--value: 5">
+                    <span>Comedies</span>
+                    <div class="value">5</div>
+                </div>
+
+                <div class="bar" style="--value: 5">
+                    <span>Dramas</span>
+                    <div class="value">5</div>
+                </div>
+
+                <div class="bar" style="--value: 3">
+                    <span>Children</span>
+                    <div class="value">3</div>
+                </div>
+
+                <div class="bar" style="--value: 3">
+                    <span>Action</span>
+                    <div class="value">3</div>
+                </div>
+
+                <div class="bar" style="--value: 2">
+                    <span>Documentaries</span>
+                    <div class="value">2</div>
+                </div>
+
+                <div class="bar" style="--value: 2">
+                    <span>Thrillers</span>
+                    <div class="value">2</div>
+                </div>
+
+                <div class="bar" style="--value: 1">
+                    <span>Horror</span>
+                    <div class="value">1</div>
+                </div>
+
+            </div>
+            <div class="pie-chart"></div>
+
+            <div class="legend">
+                <div><span class="c1"></span>Comedies (5)</div>
+                <div><span class="c2"></span>Dramas (5)</div>
+                <div><span class="c3"></span>Children (3)</div>
+                <div><span class="c4"></span>Action (3)</div>
+                <div><span class="c5"></span>Documentaries (2)</div>
+                <div><span class="c6"></span>Thrillers (2)</div>
+                <div><span class="c7"></span>Horror (1)</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026. Patrik.</p>
+    </footer>
+
+</body>
+
+</html>

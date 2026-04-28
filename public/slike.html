@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerija filmskih slika s lightbox prikazom bez JavaScript-a.">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Galerija slika</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Galerija filmskih slika</h1>
+        <div class="nav-wrapper">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            <label for="menu-toggle" class="hamburger" aria-label="Otvori navigaciju">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav aria-labelledby="primarna-navigacija" class="glavna-navigacija">
+                <h2 id="primarna-navigacija">Primarna navigacija</h2>
+                <ul>
+                    <li><a href="index.html">Početna</a></li>
+                    <li><a href="grafikon.html">Grafikon</a></li>
+                    <li><a href="slike.html">Galerija</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="uvod">
+            <h2>O galeriji</h2>
+            <p>
+                Ova galerija prikazuje slike povezane s filmskom tematikom. Klikom na sliku
+                otvara se njezin veći prikaz, a zatim se može zatvoriti bez korištenja JavaScript-a.
+            </p>
+        </section>
+
+        <section class="galerija">
+            <h2>Galerija slika</h2>
+
+            <figure class="galerija_slika">
+                <a href="#slika1">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQformwzfZ2-x4AFQQ9JrWuATq5wA1qCbk9KxrDRB5eQJiXq6ON"
+                        alt="Dick Johnson Is Dead" loading="lazy">
+                </a>
+                <figcaption>Dick Johnson Is Dead</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika2">
+                    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQS-xj6tmagU7jQeL9L0xH74D4-uredAwimdKRt1T1bN28Y8bnF"
+                        alt="My Little Pony: A New Generation" loading="lazy">
+                </a>
+                <figcaption>My Little Pony: A New Generation</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika3">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRkWIreKEZzOpTy4uNOj65UJlcWGOgJWelGQ52m1sMXOrm0PbZy"
+                        alt="Sankofa" loading="lazy">
+                </a>
+                <figcaption>Sankofa</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika4">
+                    <img src="https://m.media-amazon.com/images/M/MV5BYTMzN2I2YmQtZDFlNy00ZTg4LWE2ZjAtZmIyMmU5MmNiOTBhXkEyXkFqcGc@._V1_.jpg"
+                        alt="The Starling" loading="lazy">
+                </a>
+                <figcaption>The Starling</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika5">
+                    <img src="https://m.media-amazon.com/images/M/MV5BNjUzNzNiYTMtZGEwZC00ZTY2LWE1MGQtYzAyNzNhNjUxZWMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                        alt="Je Suis Karl" loading="lazy">
+                </a>
+                <figcaption>Je Suis Karl</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika6">
+                    <img src="https://images.justwatch.com/poster/251769931/s718/confessions-of-an-invisible-girl.jpg"
+                        alt="Confessions of an Invisible Girl" loading="lazy">
+                </a>
+                <figcaption>Confessions of an Invisible Girl</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika7">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTvlfyxPMEUTNlzmu7N1ojcQUkDntw_kBjWXJstb5oqDOM_Bh-y"
+                        alt="Europe's Most Dangerous Man: Otto Skorzeny in Spain" loading="lazy">
+                </a>
+                <figcaption>Europe's Most Dangerous Man: Otto Skorzeny in Spain</figcaption>
+            </figure>
+
+            <figure class="galerija_slika">
+                <a href="#slika8">
+                    <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSn0kYSpyqJg1GFdZBJxXQtXX-xt2jQk36Na1RE84eMfyEeMwOm"
+                        alt="intrusion" loading="lazy">
+                </a>
+                <figcaption>intrusion </figcaption>
+            </figure>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <!-- LIGHTBOX -->
+        <div id="slika1" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQformwzfZ2-x4AFQQ9JrWuATq5wA1qCbk9KxrDRB5eQJiXq6ON"
+                alt="Dick Johnson Is Dead">
+        </div>
+
+        <div id="slika2" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQS-xj6tmagU7jQeL9L0xH74D4-uredAwimdKRt1T1bN28Y8bnF"
+                alt="My Little Pony: A New Generation">
+        </div>
+
+        <div id="slika3" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRkWIreKEZzOpTy4uNOj65UJlcWGOgJWelGQ52m1sMXOrm0PbZy"
+                alt="Sankofa">
+        </div>
+
+        <div id="slika4" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://m.media-amazon.com/images/M/MV5BYTMzN2I2YmQtZDFlNy00ZTg4LWE2ZjAtZmIyMmU5MmNiOTBhXkEyXkFqcGc@._V1_.jpg"
+                alt="The Starling">
+        </div>
+
+        <div id="slika5" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://m.media-amazon.com/images/M/MV5BNjUzNzNiYTMtZGEwZC00ZTY2LWE1MGQtYzAyNzNhNjUxZWMzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                alt="Je Suis Karl">
+        </div>
+
+        <div id="slika6" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://images.justwatch.com/poster/251769931/s718/confessions-of-an-invisible-girl.jpg"
+                alt="Confessions of an Invisible Girl">
+        </div>
+
+        <div id="slika7" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTvlfyxPMEUTNlzmu7N1ojcQUkDntw_kBjWXJstb5oqDOM_Bh-y"
+                alt="Europe's Most Dangerous Man: Otto Skorzeny in Spain">
+        </div>
+
+        <div id="slika8" class="lightbox">
+            <a href="#" class="zatvori">×</a>
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSn0kYSpyqJg1GFdZBJxXQtXX-xt2jQk36Na1RE84eMfyEeMwOm"
+                alt="Intrusion">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026. Patrik.</p>
+    </footer>
+
+</body>
+
+</html>

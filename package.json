@@ -1,0 +1,29 @@
+{
+  "name": "express-railway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrikRadocaj/web_lv_2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatrikRadocaj/web_lv_2/issues"
+  },
+  "homepage": "https://github.com/PatrikRadocaj/web_lv_2#readme",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "ejs": "^5.0.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

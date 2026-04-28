@@ -1,0 +1,202 @@
+[
+  {
+    "id": "s1",
+    "title": "Dick Johnson Is Dead",
+    "year": 2020,
+    "genre": "Documentaries",
+    "duration": 90,
+    "country": ["United States"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 6.8
+  },
+  {
+    "id": "s7",
+    "title": "My Little Pony: A New Generation",
+    "year": 2021,
+    "genre": "Children & Family Movies",
+    "duration": 91,
+    "country": ["United States"],
+    "ratingLabel": "PG",
+    "ratingValue": 6.0
+  },
+  {
+    "id": "s8",
+    "title": "Sankofa",
+    "year": 1993,
+    "genre": "Dramas",
+    "duration": 125,
+    "country": ["United States", "Ghana", "Burkina Faso", "United Kingdom", "Germany", "Ethiopia"],
+    "ratingLabel": "TV-MA",
+    "ratingValue": 7.2
+  },
+  {
+    "id": "s10",
+    "title": "The Starling",
+    "year": 2021,
+    "genre": "Comedies",
+    "duration": 104,
+    "country": ["United States"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 5.9
+  },
+  {
+    "id": "s13",
+    "title": "Je Suis Karl",
+    "year": 2021,
+    "genre": "Dramas",
+    "duration": 127,
+    "country": ["Germany", "Czech Republic"],
+    "ratingLabel": "TV-MA",
+    "ratingValue": 6.7
+  },
+  {
+    "id": "s14",
+    "title": "Confessions of an Invisible Girl",
+    "year": 2021,
+    "genre": "Children & Family Movies",
+    "duration": 91,
+    "country": ["Brazil"],
+    "ratingLabel": "TV-PG",
+    "ratingValue": 6.1
+  },
+  {
+    "id": "s17",
+    "title": "Europe's Most Dangerous Man: Otto Skorzeny in Spain",
+    "year": 2020,
+    "genre": "Documentaries",
+    "duration": 67,
+    "country": ["Spain"],
+    "ratingLabel": "TV-MA",
+    "ratingValue": 6.5
+  },
+  {
+    "id": "s19",
+    "title": "Intrusion",
+    "year": 2021,
+    "genre": "Thrillers",
+    "duration": 94,
+    "country": ["United States"],
+    "ratingLabel": "TV-14",
+    "ratingValue": 5.8
+  },
+  {
+    "id": "s23",
+    "title": "Avvai Shanmughi",
+    "year": 1996,
+    "genre": "Comedies",
+    "duration": 161,
+    "country": ["India"],
+    "ratingLabel": "TV-PG",
+    "ratingValue": 6.3
+  },
+  {
+    "id": "s24",
+    "title": "Go! Go! Cory Carson: Chrissy Takes the Wheel",
+    "year": 2021,
+    "genre": "Children & Family Movies",
+    "duration": 61,
+    "country": ["United States"],
+    "ratingLabel": "TV-Y",
+    "ratingValue": 5.4
+  },
+  {
+    "id": "s25",
+    "title": "Jeans",
+    "year": 1998,
+    "genre": "Comedies",
+    "duration": 166,
+    "country": ["India"],
+    "ratingLabel": "TV-14",
+    "ratingValue": 6.9
+  },
+  {
+    "id": "s27",
+    "title": "Minsara Kanavu",
+    "year": 1997,
+    "genre": "Comedies",
+    "duration": 147,
+    "country": ["India"],
+    "ratingLabel": "TV-PG",
+    "ratingValue": 6.4
+  },
+  {
+    "id": "s28",
+    "title": "Grown Ups",
+    "year": 2010,
+    "genre": "Comedies",
+    "duration": 103,
+    "country": ["United States"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 5.3
+  },
+  {
+    "id": "s29",
+    "title": "Dark Skies",
+    "year": 2013,
+    "genre": "Horror Movies",
+    "duration": 97,
+    "country": ["United States"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 5.7
+  },
+  {
+    "id": "s30",
+    "title": "Paranoia",
+    "year": 2013,
+    "genre": "Thrillers",
+    "duration": 106,
+    "country": ["United States", "India", "France"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 5.6
+  },
+  {
+    "id": "s31",
+    "title": "Ankahi Kahaniya",
+    "year": 2021,
+    "genre": "Dramas",
+    "duration": 111,
+    "country": ["India"],
+    "ratingLabel": "TV-14",
+    "ratingValue": 6.8
+  },
+  {
+    "id": "s36",
+    "title": "The Father Who Moves Mountains",
+    "year": 2021,
+    "genre": "Dramas",
+    "duration": 110,
+    "country": ["Romania"],
+    "ratingLabel": "TV-MA",
+    "ratingValue": 7.0
+  },
+  {
+    "id": "s37",
+    "title": "The Stronghold",
+    "year": 2021,
+    "genre": "Action & Adventure",
+    "duration": 105,
+    "country": ["India"],
+    "ratingLabel": "TV-MA",
+    "ratingValue": 6.2
+  },
+  {
+    "id": "s39",
+    "title": "Birth of the Dragon",
+    "year": 2017,
+    "genre": "Action & Adventure",
+    "duration": 96,
+    "country": ["China", "Canada", "United States"],
+    "ratingLabel": "PG-13",
+    "ratingValue": 6.5
+  },
+  {
+    "id": "s42",
+    "title": "Jaws",
+    "year": 1975,
+    "genre": "Action & Adventure",
+    "duration": 124,
+    "country": ["United States"],
+    "ratingLabel": "PG",
+    "ratingValue": 8.0
+  }
+]

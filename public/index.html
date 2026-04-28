@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO meta tag: opisuje sadržaj stranice tražilicama -->
+    <meta name="description"
+        content="Responzivna web stranica o filmovima s tablicom podataka, slikama i navigacijom izrađenom u HTML-u i CSS-u.">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Stranica o filmovima</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <h1>Dobrodošli na moju web stranicu o filmovima</h1>
+            <p class="podnaslov">Pregled odabranih Netflix filmova i osnovnih podataka o njima</p>
+        </div>
+
+        <div class="nav-wrapper">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            <label for="menu-toggle" class="hamburger" aria-label="Otvori navigaciju">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav aria-labelledby="primarna-navigacija" class="glavna-navigacija">
+                <h2 id="primarna-navigacija">Primarna navigacija</h2>
+                <ul>
+                    <li><a href="/">Početna</a></li>
+                    <li><a href="/grafikon.html">Grafikon</a></li>
+                    <li><a href="/slike">Galerija</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="uvod" aria-labelledby="naslov-uvod">
+            <h2 id="naslov-uvod">O stranici</h2>
+            <p>
+                Ova stranica prikazuje odabrane filmove iz Netflix baze podataka.
+                Prikazani su osnovni podaci poput naslova, godine izlaska, žanra,
+                trajanja, države i dobne oznake.
+            </p>
+        </section>
+
+        <section class="glavni-sadrzaj" aria-labelledby="naslov-tablica">
+            <article class="tablica-clanak">
+                <h2 id="naslov-tablica">Popis filmova</h2>
+
+                <div class="filter-panel">
+                    <h3>Filtriranje podataka</h3>
+                    <div class="filter-grid">
+                        <label for="filter-genre">
+                            Žanr
+                            <select id="filter-genre">
+                                <option value="">-- Odaberi žanr --</option>
+                            </select>
+                        </label>
+
+                        <label for="filter-country">
+                            Država
+                            <input id="filter-country" type="text" placeholder="Upišite državu" />
+                        </label>
+
+                        <label for="filter-year-from">
+                            Godina od
+                            <input id="filter-year-from" type="number" min="1900" max="2030" placeholder="2010" />
+                        </label>
+
+                        <label for="filter-rating" class="filter-rating-label">
+                            Minimalna ocjena: <span id="rating-value">0.0</span>
+                            <input id="filter-rating" type="range" min="0" max="10" step="0.1" value="0" />
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button id="primijeni-filtere">Filtriraj</button>
+                        <button id="resetiraj-filtere" class="secondary">Poništi filtere</button>
+                    </div>
+                </div>
+
+                <p id="result-info">Učitavanje podataka...</p>
+
+                <div class="table-wrapper">
+                    <table id="filmovi-tablica" aria-describedby="opis-tablice">
+                        <caption id="opis-tablice">
+                            Tablica s filmovima koji odgovaraju odabranim kriterijima
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Naslov</th>
+                                <th scope="col">Godina</th>
+                                <th scope="col">Žanr</th>
+                                <th scope="col">Trajanje</th>
+                                <th scope="col">Država</th>
+                                <th scope="col">Ocjena</th>
+                                <th scope="col">Akcija</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </article>
+
+            <aside class="sidebar" aria-labelledby="naslov-aside">
+                <h2 id="naslov-aside">Filmski kutak</h2>
+
+                <picture>
+                    <source media="(max-width: 768px)" srcset="image.png">
+                    <img src="image.png" alt="Kino projekcija">
+                </picture>
+
+                <p>
+                    Filmovi su jedan od najpopularnijih oblika zabave, ali i važan dio moderne
+                    kulture. Kroz različite žanrove, trajanje i produkcijske države možemo vidjeti
+                    koliko je filmska industrija raznolika.
+                </p>
+
+                <p>
+                    Na ovoj stranici prikazani su odabrani filmovi iz Netflix baze podataka.
+                    U tablici se mogu usporediti osnovne informacije poput godine izlaska,
+                    trajanja, države i dobne oznake, dok se na posebnoj stranici ti podaci
+                    dodatno prikazuju kroz grafikon.
+                </p>
+
+                <p>
+                    Posebno je zanimljivo promatrati koji se žanrovi najčešće pojavljuju među
+                    odabranim naslovima. Upravo zato je izrađena i dodatna stranica s grafičkim
+                    prikazom podataka.
+                </p>
+
+                <a class="akcija-gumb" href="grafikon.html">Pogledaj grafički prikaz</a>
+
+                <div class="cart-panel">
+                    <h3>Košarica</h3>
+                    <p id="cart-count">Odabrano filmova: 0</p>
+                    <div class="table-wrapper cart-table-wrapper">
+                        <table id="cart-table" aria-label="Košarica">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Naslov</th>
+                                    <th scope="col">Godina</th>
+                                    <th scope="col">Žanr</th>
+                                    <th scope="col">Ukloni</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <button id="confirm-cart" class="akcija-gumb">Potvrdi posudbu</button>
+                    <p id="cart-message" class="cart-message"></p>
+                </div>
+            </aside>
+        </section>
+
+        <section aria-labelledby="naslov-info">
+            <h2 id="naslov-info">O filmskoj bazi podataka</h2>
+
+            <article>
+                <h3>Što prikazuje tablica?</h3>
+                <p>
+                    Tablica prikazuje prvih 20 filmova izdvojenih iz CSV datoteke. Za svaki
+                    film navedeni su identifikator, naslov, godina izlaska, glavni žanr,
+                    trajanje, država te dobna oznaka. Takav prikaz omogućuje brz pregled i
+                    jednostavnu usporedbu između različitih naslova.
+                </p>
+            </article>
+
+            <article>
+                <h3>Zašto je ova tema odabrana?</h3>
+                <p>
+                    Tema filmova prikladna je za izradu web stranice jer kombinira tekstualne,
+                    tablične i vizualne podatke. Osim toga, filmski podaci su pregledni i lako
+                    se mogu pretvoriti u histogram ili kružni grafikon, što je korisno za
+                    daljnju analizu sadržaja.
+                </p>
+            </article>
+
+            <article>
+                <h3>Što se može analizirati?</h3>
+                <p>
+                    Na temelju prikazanih podataka može se analizirati zastupljenost pojedinih
+                    žanrova, usporediti trajanje filmova ili promatrati iz kojih država dolazi
+                    najveći broj naslova. Takve informacije pomažu pretvoriti običnu tablicu u
+                    smislen prikaz podataka.
+                </p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026. Patrik</p>
+    </footer>
+    <script src="script.js?v=2" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "slika1",
+    "url": "/images/photo1.jpg",
+    "title": "Dick Johnson Is Dead"
+  },
+  {
+    "id": "slika2",
+    "url": "/images/photo2.jpg",
+    "title": "My Little Pony: A New Generation"
+  },
+  {
+    "id": "slika3",
+    "url": "/images/photo3.jpg",
+    "title": "Sankofa"
+  },
+  {
+    "id": "slika4",
+    "url": "/images/photo4.jpg",
+    "title": "The Starling"
+  }
+]
